@@ -25,7 +25,7 @@ CREATE TABLE hemocentros (
     email VARCHAR(100) UNIQUE NOT NULL,
     estado BOOLEAN,
     fecha_modificacion DATE NOT NULL,
-    fecha_alta DATE UNIQUE
+    fecha_alta DATE
 );
 
 -- 2. Tablas Dependientes (Con Foreign Keys)
@@ -55,7 +55,7 @@ CREATE TABLE solicitudes (
     id_factor_rh INT NOT NULL,
     cantidad_donantes INT NOT NULL,
     urgencia BOOLEAN,
-    fecha_alta DATE UNIQUE,
+    fecha_alta DATE,
     fecha_modificacion DATE NOT NULL,
     estado BOOLEAN,
     FOREIGN KEY (id_hemocentro) REFERENCES hemocentros(id_hemocentro),
@@ -65,7 +65,7 @@ CREATE TABLE solicitudes (
 
 CREATE TABLE recuperacion_contrasena (
     id_recuperacion INT AUTO_INCREMENT PRIMARY KEY,
-    id_usuario INT FOREIGN KEY,
+    id_usuario INT NOT NULL,
     codigo_recuperacion VARCHAR(10) NOT NULL,
     intentos INT NOT NULL,
     fecha_expiracion DATE NOT NULL,
